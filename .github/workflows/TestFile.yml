@@ -4,8 +4,12 @@ name: CI
 
 # Controls when the workflow will run
 on:
+  
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
+    paths:
+    - '**.js'
+    - '!doc/**'
     branches: 
     - 'main'
     - 'release/**'
@@ -33,12 +37,12 @@ jobs:
         run: |
           A=10
           echo Hello ,world! $A lan vao ngay $(date +'%y-%m-%d')
-          echo "TODAY=$(date +'%y-%m-%d')">>GITHUB_ENV
+          echo "TODAY=$(date +'%y-%m-%d')" >> $GITHUB_ENV
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          echo {{env.TODAY}}
+          echo ${{env.TODAY}}
          
