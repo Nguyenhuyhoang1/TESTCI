@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: TestWfPullRequest
 
 # Controls when the workflow will run
 on:
@@ -36,6 +36,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - uses: mheap/github-action-required-labels@v4
+        with:
+          mode: exactly
+          count: 0
+          labels: "bug"
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
